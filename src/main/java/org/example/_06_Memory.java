@@ -1,5 +1,6 @@
 package org.example;
 
+import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
@@ -8,6 +9,7 @@ import dev.langchain4j.model.Tokenizer;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
+import dev.langchain4j.model.output.Response;
 
 public class _06_Memory {
 
@@ -32,11 +34,12 @@ public class _06_Memory {
         chatMemory.add(systemMessage);
 
         UserMessage userMessage = UserMessage.from("""
-                Which framework should I use for one of our back-end API? Spring Boot, ASP.NET Core Web API, Django or Rocket?
+                Which framework should I use for one of our back-end API's? Spring Boot, ASP.NET Core Web API, Django or Rocket?
                 """);
 
         chatMemory.add(userMessage);
 
-        model.generate(chatMemory.messages());
+        Response<AiMessage> answer = model.generate(chatMemory.messages());
+        System.out.println(answer.content().text());
     }
 }

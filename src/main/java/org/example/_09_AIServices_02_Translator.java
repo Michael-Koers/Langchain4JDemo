@@ -17,7 +17,7 @@ public class _09_AIServices_02_Translator {
 
         TextUtils textUtils = AiServices.create(TextUtils.class, model);
 
-        String answer = textUtils.translate(Locale.ITALIAN, "Hello World, welcome to my presentation about langchain4j");
+        String answer = textUtils.translate(Locale.GERMAN, "Hello World, welcome to my presentation about langchain4j");
         System.out.println(answer);
 
         String text = """
@@ -28,8 +28,8 @@ public class _09_AIServices_02_Translator {
                 native country, region, or culture.
                 """;
 
-        List<String> bulletPoints = textUtils.summarize(text, 3);
-        System.out.println(bulletPoints);
+//        List<String> bulletPoints = textUtils.summarize(text, 3);
+//        System.out.println(bulletPoints);
     }
 }
 

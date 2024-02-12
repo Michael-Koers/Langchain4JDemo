@@ -43,6 +43,6 @@ interface DateTimeExtractor {
     @UserMessage("Extract date from {{it}}")
     LocalDate extractDate(String text);
 
-    @UserMessage("Extract date from {{it}}")
+    @UserMessage("Extract datetime from {{it}}")
     LocalDateTime extractDateTime(String text);
 }

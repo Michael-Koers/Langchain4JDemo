@@ -13,7 +13,6 @@ public class _07_FewShot {
 
     public static void main(String[] args) {
 
-        // Alleen ChatGPT 3.5 Turbo of ChatGPT 4
         OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_DEMO);
 
         // Geef LLM wat voorbeelden
@@ -65,6 +64,6 @@ public class _07_FewShot {
 //                 """));
 
         Response<AiMessage> answer = model.generate(fewShotHistory);
-        System.out.println(answer.content());
+        System.out.println(answer.content().text());
     }
 }
