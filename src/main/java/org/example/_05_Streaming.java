@@ -14,6 +14,7 @@ public class _05_Streaming {
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()) {
+            System.out.println();
             String in = scanner.nextLine();
 
             model.generate(in, new StreamingResponseHandler<>() {
@@ -23,8 +24,8 @@ public class _05_Streaming {
                 }
 
                 @Override
-                public void onError(Throwable throwable) {
-                    System.out.println(throwable.toString());
+                public void onError(Throwable error) {
+                    System.out.println(error.toString());
                 }
             });
         }

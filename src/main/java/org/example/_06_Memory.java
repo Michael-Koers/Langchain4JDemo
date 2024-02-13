@@ -11,6 +11,8 @@ import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
 import dev.langchain4j.model.output.Response;
 
+import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
+
 public class _06_Memory {
 
     public static void main(String[] args) {
@@ -19,7 +21,7 @@ public class _06_Memory {
         OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_PAID);
 
         // Opzet chatmemory
-        Tokenizer tokenizer = new OpenAiTokenizer(OpenAiChatModelName.GPT_3_5_TURBO.name());
+        Tokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO);
         ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
 
         // Geef LLM achtergrond informatie
@@ -27,14 +29,14 @@ public class _06_Memory {
                 """
                         We work for a company renowned for its Java knowledge and experts.
                         Our company only works with Java and Java-based tools and frameworks, no other programming languages.
-                        You are an advisor for the developers of this company, keep your answers short but do explain your choices.
+                        You are an advisor for the developers of this company, do shortly explain your answers.
                         """
         );
 
         chatMemory.add(systemMessage);
 
         UserMessage userMessage = UserMessage.from("""
-                Which framework should I use for one of our back-end API's? Spring Boot, ASP.NET Core Web API, Django or Rocket?
+                Which framework should I use for one of our back-end API's? ASP.NET Core Web API, Django, Spring Boot or Rocket?
                 """);
 
         chatMemory.add(userMessage);
