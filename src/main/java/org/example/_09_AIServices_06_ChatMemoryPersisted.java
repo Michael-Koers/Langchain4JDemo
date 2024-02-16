@@ -33,11 +33,11 @@ public class _09_AIServices_06_ChatMemoryPersisted {
                 .chatMemoryProvider(provider)
                 .build();
 
-//        System.out.println(assistant.chat(1, "Hello my name is Michael"));
-//        System.out.println(assistant.chat(2, "Hello my name is Karl"));
+        System.out.println(assistant.chat(1, "Hello my name is Michael"));
+        System.out.println(assistant.chat(2, "Hello my name is Karl"));
 
-        System.out.println(assistant.chat(1, "What is my name?"));
-        System.out.println(assistant.chat(2, "What is my name?"));
+//        System.out.println(assistant.chat(1, "What is my name?"));
+//        System.out.println(assistant.chat(2, "What is my name?"));
 
     }
 
