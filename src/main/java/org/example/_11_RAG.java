@@ -1,0 +1,87 @@
+package org.example;
+
+import dev.langchain4j.chain.ConversationalRetrievalChain;
+import dev.langchain4j.data.document.Document;
+import dev.langchain4j.data.document.DocumentParser;
+import dev.langchain4j.data.document.parser.TextDocumentParser;
+import dev.langchain4j.data.document.splitter.DocumentSplitters;
+import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
+import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
+import dev.langchain4j.store.embedding.EmbeddingStore;
+import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
+import org.apache.poi.xssf.extractor.XSSFExcelExtractor;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
+import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
+
+public class _11_RAG {
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        // In process model
+        EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+        EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
+
+        EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
+                .documentSplitter(DocumentSplitters.recursive(500, 0))
+                .embeddingModel(embeddingModel)
+                .embeddingStore(embeddingStore)
+                .build();
+
+        EmbeddingStoreContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
+                .embeddingModel(embeddingModel)
+                .embeddingStore(embeddingStore)
+                .build();
+
+        OpenAiChatModel model = OpenAiChatModel.builder()
+                .apiKey(ApiKeys.OPENAI_PAID)
+                .temperature(0d)
+                .build();
+
+        Document document = loadDocument(Paths.get("src/main/resources/Martin-and-Donny.txt"), new TextDocumentParser());
+//        Document document = loadDocument(Paths.get("src/main/resources/All the books.xlsx"), new ApacheExcelParser());
+        ingestor.ingest(document);
+
+        ConversationalRetrievalChain chain = ConversationalRetrievalChain.builder()
+                .chatLanguageModel(model)
+                .contentRetriever(retriever)
+                .build();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Embedding store ready. Start asking questions.");
+        System.out.println();
+
+        while (scanner.hasNext()) {
+            String in = scanner.nextLine();
+
+            String answer = chain.execute(in);
+            System.out.println(answer);
+        }
+
+    }
+}
+
+class ApacheExcelParser implements DocumentParser {
+
+    @Override
+    public Document parse(InputStream inputStream) {
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+            XSSFExcelExtractor extractor = new XSSFExcelExtractor(workbook);
+            return Document.from(extractor.getText());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
