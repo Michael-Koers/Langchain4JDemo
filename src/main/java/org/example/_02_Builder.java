@@ -7,7 +7,6 @@ public class _02_Builder {
 
     public static void main(String[] args) {
 
-
         OpenAiChatModel.builder()
                 .apiKey(ApiKeys.OPENAI_DEMO)
                 .modelName(OpenAiChatModelName.GPT_4)

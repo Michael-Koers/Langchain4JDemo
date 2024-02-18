@@ -51,7 +51,7 @@ public class _07_FewShot {
                 """));
 
         fewShotHistory.add(AiMessage.from("""
-                I'm sorry to hear, we've created a customer support tickets. We will look into the issue as soon as possible.
+                I'm sorry to hear, we've created a customer support ticket. We will look into the issue as soon as possible.
                 """));
 
         // En nu een 'echte' vraag/opmerking

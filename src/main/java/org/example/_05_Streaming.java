@@ -11,6 +11,7 @@ public class _05_Streaming {
 
         // Alleen ChatGPT 3.5 Turbo of ChatGPT 4
         OpenAiStreamingChatModel model = OpenAiStreamingChatModel.withApiKey(ApiKeys.OPENAI_PAID);
+
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNext()) {

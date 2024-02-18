@@ -16,21 +16,24 @@ public class _10_Tools {
 
     public static void main(String[] args) {
 
+        // Zet Logger of Debug
+
         Assistant assistant = AiServices.builder(Assistant.class)
                 .chatLanguageModel(OpenAiChatModel.builder()
                         // Tools only work with paid openai license, this is not documented anywhere...
                         .apiKey(ApiKeys.OPENAI_PAID)
-//                        .logRequests(true)
+                        .logRequests(true)
                         .temperature(0d)
                         .build())
                 .tools(new CustomerTools())
-                .chatMemory(MessageWindowChatMemory.withMaxMessages(15))
+                .chatMemory(MessageWindowChatMemory.withMaxMessages(20))
                 .build();
 
         String answer = assistant.chat("""
-                Create customers for the following people and save them to our database: Kevin, Sarah, Alex.
+                Create a customer for Kevin and Sarah and save it to our database.
                 List the customers with their new ID's.
                 """);
+
         System.out.println(answer);
     }
 }
@@ -51,13 +54,13 @@ class CustomerTools {
     }
 
     @Tool("Saves given customer to the database, returns HTTP status code indicating success or failure")
-    int saveCustomer(int id, String name) {
+    int saveCustomer(int customerId, String customerName) {
         try {
 //            if (name.equalsIgnoreCase("Alex")) throw new IOException("We don't like Alex");
 
             Files.writeString(Paths.get(database),
-                    new Customer(id, name) + "\n"
-                    , StandardOpenOption.APPEND);
+                    new Customer(customerId, customerName) + "\n",
+                    StandardOpenOption.APPEND);
 
             return HttpURLConnection.HTTP_CREATED;
         } catch (IOException e) {
