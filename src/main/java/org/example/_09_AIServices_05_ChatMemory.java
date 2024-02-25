@@ -18,6 +18,7 @@ public class _09_AIServices_05_ChatMemory {
                 .chatMemoryProvider(memoryId -> MessageWindowChatMemory.withMaxMessages(10))
                 .build();
 
+
         System.out.println(assistant.chat(1, "Hello, my name is Michael"));
 
         System.out.println(assistant.chat(2, "Hello, my name is Karl"));

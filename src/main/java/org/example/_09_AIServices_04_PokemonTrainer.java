@@ -14,12 +14,11 @@ public class _09_AIServices_04_PokemonTrainer {
         OpenAiChatModel model = OpenAiChatModel.builder()
                 .apiKey(ApiKeys.OPENAI_DEMO)
                 .logRequests(true)
-                .logResponses(true)
                 .build();
 
-        PokemonTrainerGeneratorService pokemonTrainer = AiServices.create(PokemonTrainerGeneratorService.class, model);
+        PokemonTrainerGeneratorService trainerGenerator = AiServices.create(PokemonTrainerGeneratorService.class, model);
 
-        Trainer trainer = pokemonTrainer.generate("Generate a low level trainer named 'Kelvin' with 2 bug and 2 fire pokemon");
+        Trainer trainer = trainerGenerator.generate("Generate a low level trainer named 'Kelvin' with 2 bug and 2 fire pokemon");
 
         System.out.println(trainer);
     }

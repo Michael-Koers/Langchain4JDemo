@@ -12,10 +12,22 @@ public class _09_AIServices_01_PokemonTrainer {
 
         PokemonTrainerService pokemonTrainer = AiServices.create(PokemonTrainerService.class, model);
 
-        String answer = pokemonTrainer.team("Let's fight!");
-        System.out.println(answer);
+
+        System.out.println(pokemonTrainer.fight("Let's fight!"));
+
+        System.out.println();
+
+        System.out.println(pokemonTrainer.defeat("Let's fight!"));
+
+        System.out.println();
+
+        System.out.println(pokemonTrainer.team("Let's fight!"));
     }
 }
+
+
+
+
 
 
 interface PokemonTrainerService {

@@ -20,7 +20,7 @@ public class _07_FewShot {
 
         // Positief
         fewShotHistory.add(UserMessage.from("""
-                I just would like to tell you guys are smarthome app is working flawlessly. Thanks for the amazing work!
+                I just would like to tell you guys, your smarthome app is working flawlessly. Thanks for the amazing work!
                 """));
 
         fewShotHistory.add(AiMessage.from("""

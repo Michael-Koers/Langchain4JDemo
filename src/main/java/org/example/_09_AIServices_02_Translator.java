@@ -28,7 +28,7 @@ public class _09_AIServices_02_Translator {
                 native country, region, or culture.
                 """;
 
-//        List<String> bulletPoints = textUtils.summarize(text, 3);
+//        List<String> bulletPoints = textUtils.summarize(text, 2);
 //        System.out.println(bulletPoints);
     }
 }

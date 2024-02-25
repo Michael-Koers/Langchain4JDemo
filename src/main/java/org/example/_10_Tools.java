@@ -3,6 +3,7 @@ package org.example;
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.output.structured.Description;
 import dev.langchain4j.service.AiServices;
 
 import java.io.IOException;
@@ -16,13 +17,13 @@ public class _10_Tools {
 
     public static void main(String[] args) {
 
-        // Zet Logger of Debug
+        // Zet logger op Debug + log requests
 
         Assistant assistant = AiServices.builder(Assistant.class)
                 .chatLanguageModel(OpenAiChatModel.builder()
                         // Tools only work with paid openai license, this is not documented anywhere...
                         .apiKey(ApiKeys.OPENAI_PAID)
-                        .logRequests(true)
+//                        .logRequests(true)
                         .temperature(0d)
                         .build())
                 .tools(new CustomerTools())
@@ -30,8 +31,12 @@ public class _10_Tools {
                 .build();
 
         String answer = assistant.chat("""
-                Create a customer for Kevin and Sarah and save it to our database.
-                List the customers with their new ID's.
+                Create a customer for Kevin and save his ID and name to our database.
+                If successfull, display result as follows:
+                Customer saved: id[..], name[..]
+                
+                If failure, display result as follows:
+                Failed to save customer [insert name], reason: [..]
                 """);
 
         System.out.println(answer);
@@ -53,10 +58,10 @@ class CustomerTools {
         return new Customer(customerId.getAndIncrement(), name);
     }
 
-    @Tool("Saves given customer to the database, returns HTTP status code indicating success or failure")
+    @Tool("Save customer ID and customer name to database, returns HTTP status code indicating success or failure")
     int saveCustomer(int customerId, String customerName) {
         try {
-//            if (name.equalsIgnoreCase("Alex")) throw new IOException("We don't like Alex");
+            if (customerName.equalsIgnoreCase("Alex")) throw new IOException("We don't like Alex");
 
             Files.writeString(Paths.get(database),
                     new Customer(customerId, customerName) + "\n",
@@ -69,5 +74,7 @@ class CustomerTools {
     }
 }
 
-record Customer(int id, String name) {
+record Customer(
+        @Description("Customer ID") int id,
+        @Description("Customer Name") String name) {
 };

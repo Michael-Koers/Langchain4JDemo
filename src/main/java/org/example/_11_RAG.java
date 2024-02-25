@@ -5,10 +5,16 @@ import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentParser;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.splitter.DocumentSplitters;
+import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.segment.TextSegment;
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.memory.chat.TokenWindowChatMemory;
+import dev.langchain4j.model.Tokenizer;
 import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
+import dev.langchain4j.model.openai.OpenAiTokenizer;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
@@ -23,6 +29,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 import static dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument;
+import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
 
 public class _11_RAG {
 
@@ -45,6 +52,7 @@ public class _11_RAG {
 
         OpenAiChatModel model = OpenAiChatModel.builder()
                 .apiKey(ApiKeys.OPENAI_PAID)
+                .modelName(OpenAiChatModelName.GPT_3_5_TURBO)
                 .temperature(0d)
                 .build();
 
@@ -52,9 +60,15 @@ public class _11_RAG {
 //        Document document = loadDocument(Paths.get("src/main/resources/All the books.xlsx"), new ApacheExcelParser());
         ingestor.ingest(document);
 
+        // Opzet chatmemory, om antwoorden kort te houden
+        Tokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO);
+        ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
+        chatMemory.add(SystemMessage.from("Keep your answer short."));
+
         ConversationalRetrievalChain chain = ConversationalRetrievalChain.builder()
                 .chatLanguageModel(model)
                 .contentRetriever(retriever)
+                .chatMemory(chatMemory)
                 .build();
 
         Scanner scanner = new Scanner(System.in);
