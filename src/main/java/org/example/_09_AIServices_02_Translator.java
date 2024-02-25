@@ -20,6 +20,8 @@ public class _09_AIServices_02_Translator {
         String answer = textUtils.translate(Locale.GERMAN, "Hello World, welcome to my presentation about langchain4j");
         System.out.println(answer);
 
+        System.out.println();
+
         String text = """
                 A Locale object represents a specific geographical, political, or cultural region.
                 An operation that requires a Locale to perform its task is called locale-sensitive and uses the Locale
@@ -28,8 +30,8 @@ public class _09_AIServices_02_Translator {
                 native country, region, or culture.
                 """;
 
-//        List<String> bulletPoints = textUtils.summarize(text, 2);
-//        System.out.println(bulletPoints);
+        List<String> bulletPoints = textUtils.summarize(text, 2);
+        System.out.println(bulletPoints);
     }
 }
 

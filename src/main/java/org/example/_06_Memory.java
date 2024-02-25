@@ -29,7 +29,7 @@ public class _06_Memory {
                 """
                         We work for a company renowned for its Java knowledge and experts.
                         Our company only works with Java and Java-based tools and frameworks, no other programming languages.
-                        You are an advisor for the developers of this company.
+                        You are an advisor for the developers of this company. Answer in max 2 sentences.
                         """
         );
 

@@ -38,9 +38,7 @@ public class _09_AIServices_06_ChatMemoryPersisted {
 
 //        System.out.println(assistant.chat(1, "What is my name?"));
 //        System.out.println(assistant.chat(2, "What is my name?"));
-
     }
-
 }
 
 

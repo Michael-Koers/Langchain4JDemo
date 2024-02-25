@@ -1,0 +1,2 @@
+Customer[id=1000, name=Kevin]
+Customer[id=1000, name=Kevin]

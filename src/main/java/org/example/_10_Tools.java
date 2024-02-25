@@ -23,7 +23,7 @@ public class _10_Tools {
                 .chatLanguageModel(OpenAiChatModel.builder()
                         // Tools only work with paid openai license, this is not documented anywhere...
                         .apiKey(ApiKeys.OPENAI_PAID)
-//                        .logRequests(true)
+                        .logRequests(true)
                         .temperature(0d)
                         .build())
                 .tools(new CustomerTools())
@@ -32,7 +32,7 @@ public class _10_Tools {
 
         String answer = assistant.chat("""
                 Create a customer for Kevin and save his ID and name to our database.
-                If successfull, display result as follows:
+                If successful, display result as follows:
                 Customer saved: id[..], name[..]
                 
                 If failure, display result as follows:
