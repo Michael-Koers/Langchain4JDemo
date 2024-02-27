@@ -35,6 +35,8 @@ public class _11_RAG {
 
     public static void main(String[] args) throws FileNotFoundException {
 
+        // Debugger op info
+
         // In process model
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
@@ -63,7 +65,7 @@ public class _11_RAG {
         // Opzet chatmemory, om antwoorden kort te houden
         Tokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO);
         ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
-        chatMemory.add(SystemMessage.from("Keep your answer short."));
+        chatMemory.add(SystemMessage.from("Keep your answers short."));
 
         ConversationalRetrievalChain chain = ConversationalRetrievalChain.builder()
                 .chatLanguageModel(model)

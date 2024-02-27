@@ -22,6 +22,7 @@ public class _09_AIServices_06_ChatMemoryPersisted {
         OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_DEMO);
 
         FileStore store = new FileStore();
+
         ChatMemoryProvider provider = memoryId -> MessageWindowChatMemory.builder()
                 .id(memoryId)
                 .maxMessages(10)

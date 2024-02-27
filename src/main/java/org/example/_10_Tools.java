@@ -31,7 +31,7 @@ public class _10_Tools {
                 .build();
 
         String answer = assistant.chat("""
-                Create a customer for Kevin and save his ID and name to our database.
+                Create a customer for Alex and save his ID and name to our database.
                 If successful, display result as follows:
                 Customer saved: id[..], name[..]
                 
@@ -40,6 +40,7 @@ public class _10_Tools {
                 """);
 
         System.out.println(answer);
+        // Dynamic tools
     }
 }
 

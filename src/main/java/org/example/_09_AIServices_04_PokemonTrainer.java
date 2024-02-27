@@ -35,8 +35,8 @@ record Trainer(String name, List<Pokemon> team) {
 }
 
 record Pokemon(String name
-        , @Description("All uppercase") String type
-//        , String type
+//        , @Description("All uppercase") String type
+        , String type
         , int level
         , int hp
         , @Description("Random number of moves between 1 and 4") List<String> moves)
