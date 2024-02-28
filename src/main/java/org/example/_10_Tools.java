@@ -3,6 +3,7 @@ package org.example;
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.output.structured.Description;
 import dev.langchain4j.service.AiServices;
 
@@ -23,6 +24,7 @@ public class _10_Tools {
                 .chatLanguageModel(OpenAiChatModel.builder()
                         // Tools only work with paid openai license, this is not documented anywhere...
                         .apiKey(ApiKeys.OPENAI_PAID)
+                        .modelName(OpenAiChatModelName.GPT_4)
                         .logRequests(true)
                         .temperature(0d)
                         .build())
@@ -31,7 +33,7 @@ public class _10_Tools {
                 .build();
 
         String answer = assistant.chat("""
-                Create a customer for Alex and save his ID and name to our database.
+                Create a customer for Kevin and save his ID and name to our database.
                 If successful, display result as follows:
                 Customer saved: id[..], name[..]
                 
