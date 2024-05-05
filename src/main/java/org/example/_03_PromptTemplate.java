@@ -22,8 +22,6 @@ public class _03_PromptTemplate {
 
         Prompt prompt = promptTemplate.apply(values);
 
-        System.out.println(prompt);
-
         String answer = model.generate(prompt.toString());
 
         System.out.println(answer);
