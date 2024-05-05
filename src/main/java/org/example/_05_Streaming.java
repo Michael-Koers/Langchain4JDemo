@@ -10,7 +10,7 @@ public class _05_Streaming {
 
     public static void main(String[] args) {
 
-        // Alleen ChatGPT 3.5 Turbo of ChatGPT 4
+        // Only available with ChatGPT 3.5 Turbo or ChatGPT 4
         StreamingChatLanguageModel model = OpenAiStreamingChatModel.withApiKey(ApiKeys.OPENAI_PAID);
 
         Scanner scanner = new Scanner(System.in);

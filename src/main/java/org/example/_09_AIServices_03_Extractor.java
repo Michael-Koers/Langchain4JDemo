@@ -15,6 +15,7 @@ public class _09_AIServices_03_Extractor {
 
         DateTimeExtractor dateTimeExtractor = AiServices.create(DateTimeExtractor.class, model);
 
+        // Dutch song - "Flappie" by Youp van 't Hek
         String text = """
             Het was kerstochtend 1961
             Ik weet het nog zo goed

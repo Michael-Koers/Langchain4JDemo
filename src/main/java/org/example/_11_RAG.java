@@ -35,8 +35,6 @@ public class _11_RAG {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        // Debugger op info
-
         // In process model
         EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
         EmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
@@ -59,10 +57,9 @@ public class _11_RAG {
                 .build();
 
         Document document = loadDocument(Paths.get("src/main/resources/Martin-and-Donny.txt"), new TextDocumentParser());
-//        Document document = loadDocument(Paths.get("src/main/resources/All the books.xlsx"), new ApacheExcelParser());
         ingestor.ingest(document);
 
-        // Opzet chatmemory, om antwoorden kort te houden
+        // Set up chatmemory to keep answers short
         Tokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO);
         ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
         chatMemory.add(SystemMessage.from("Keep your answers short."));
@@ -88,6 +85,13 @@ public class _11_RAG {
     }
 }
 
+/*
+    I tried to make parser for reading Excel files.
+    It "sort of" worked. It could read data from Excel files, but could only retrieve
+    information from a single line. If you tried to get information from multiple lines (like aggregating a column)
+    the model would retrieve incorrect or incomplete information. This probably has to do with the structure of Excel files (XML).
+    Have not found a solution, but this was a quick try-out.
+ */
 class ApacheExcelParser implements DocumentParser {
 
     @Override

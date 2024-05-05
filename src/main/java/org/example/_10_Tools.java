@@ -18,8 +18,7 @@ public class _10_Tools {
 
     public static void main(String[] args) {
 
-        // Zet logger op Debug + log requests
-
+        // Set logger to debug to see Tool requests
         Assistant assistant = AiServices.builder(Assistant.class)
                 .chatLanguageModel(OpenAiChatModel.builder()
                         // Tools only work with paid openai license, this is not documented anywhere...

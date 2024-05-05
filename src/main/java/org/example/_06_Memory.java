@@ -17,10 +17,10 @@ public class _06_Memory {
 
     public static void main(String[] args) {
 
-        // Alleen ChatGPT 3.5 Turbo of ChatGPT 4
+        // Only available with ChatGPT 3.5 Turbo or ChatGPT 4
         OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_PAID);
 
-        // Opzet chatmemory
+        // Chatmemory set-up
         Tokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO);
         ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
 

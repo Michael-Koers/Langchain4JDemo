@@ -42,7 +42,9 @@ public class _09_AIServices_06_ChatMemoryPersisted {
     }
 }
 
-
+/*
+ Simple local file storage (it's breaks after 1 run, but it's just to prove a point :)  )
+ */
 class FileStore implements ChatMemoryStore {
 
     public static final String PATH = "src/main/resources/messages_%s.txt";

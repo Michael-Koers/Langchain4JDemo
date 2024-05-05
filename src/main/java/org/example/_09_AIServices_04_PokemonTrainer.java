@@ -11,7 +11,7 @@ import java.util.List;
 public class _09_AIServices_04_PokemonTrainer {
     public static void main(String[] args) {
 
-        // Zet logger op debug
+        // To see what happens underwater, set logger to debug
         OpenAiChatModel model = OpenAiChatModel.builder()
                 .apiKey(ApiKeys.OPENAI_DEMO)
                 .logRequests(true)

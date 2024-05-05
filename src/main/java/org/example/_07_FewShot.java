@@ -15,10 +15,10 @@ public class _07_FewShot {
 
         OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_DEMO);
 
-        // Geef LLM wat voorbeelden
+        // Provide LLM with some examples
         List<ChatMessage> fewShotHistory = new ArrayList<>();
 
-        // Positief
+        // Positive
         fewShotHistory.add(UserMessage.from("""
                 I just would like to tell you guys, your smarthome app is working flawlessly. Thanks for the amazing work!
                 """));
@@ -27,7 +27,7 @@ public class _07_FewShot {
                 Thanks for the kind words, here at Company X we strive to deliver the best service to our customers!
                 """));
 
-        // Negatief
+        // Negative
         fewShotHistory.add(UserMessage.from("""
                 Your smarthome app is thrash, as a color blind person, the UI is extremely difficult to navigate.
                 """));
@@ -36,7 +36,7 @@ public class _07_FewShot {
                 I'm sorry to hear, we've created a customer support ticket. We will look into the issue as soon as possible.
                 """));
 
-        // Meer positief
+        // More positive
         fewShotHistory.add(UserMessage.from("""
                 Great app, 10/10!
                 """));
@@ -45,7 +45,7 @@ public class _07_FewShot {
                 Thanks for the kind words, here at Company X we strive to deliver the best service to our customers!
                 """));
 
-        // Neutraal
+        // Neutral
         fewShotHistory.add(UserMessage.from("""
                 Your smarthome app is refusing to connect to my Home Assistent running on a local Raspberry Pi. Any ideas?
                 """));
@@ -54,7 +54,7 @@ public class _07_FewShot {
                 I'm sorry to hear, we've created a customer support ticket. We will look into the issue as soon as possible.
                 """));
 
-        // En nu een 'echte' vraag/opmerking
+        // And now a real question/remark
         fewShotHistory.add(UserMessage.from("""
                 Good, love it!
                 """));
