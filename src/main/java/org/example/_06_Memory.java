@@ -1,6 +1,7 @@
 package org.example;
 
 import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
@@ -11,6 +12,9 @@ import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
 import dev.langchain4j.model.output.Response;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
 
 public class _06_Memory {
@@ -18,11 +22,9 @@ public class _06_Memory {
     public static void main(String[] args) {
 
         // Only available with ChatGPT 3.5 Turbo or ChatGPT 4
-        OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_PAID);
+        OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_DEMO);
 
-        // Chatmemory set-up
-        Tokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO);
-        ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(1000, tokenizer);
+        List<ChatMessage> chatMemory = new ArrayList<>();
 
         // Provide LLM with background information
         SystemMessage systemMessage = SystemMessage.from(
@@ -41,7 +43,7 @@ public class _06_Memory {
 
         chatMemory.add(userMessage);
 
-        Response<AiMessage> answer = model.generate(chatMemory.messages());
+        Response<AiMessage> answer = model.generate(chatMemory);
         System.out.println(answer.content().text()); // I recommend using Spring Boot for developing your back-end API,
         // as it is a widely used and well-supported Java-based framework known for its ease of use and productivity.
 
