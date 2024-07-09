@@ -56,8 +56,8 @@ class CustomerTools {
     private static final AtomicInteger customerId = new AtomicInteger(1000);
 
     @Tool("Creates and returns a new customer")
-    Customer createCustomer(String name) {
-        return new Customer(customerId.getAndIncrement(), name);
+    Klant createCustomer(String name) {
+        return new Klant(customerId.getAndIncrement(), name);
     }
 
     @Tool("Save customer ID and customer name to database, returns HTTP status code indicating success or failure")
@@ -66,7 +66,7 @@ class CustomerTools {
             if (customerName.equalsIgnoreCase("Alex")) throw new IOException("We don't like Alex");
 
             Files.writeString(Paths.get(database),
-                    new Customer(customerId, customerName) + "\n",
+                    new Klant(customerId, customerName) + "\n",
                     StandardOpenOption.APPEND);
 
             return HttpURLConnection.HTTP_CREATED;
