@@ -25,28 +25,28 @@ public class _04_StructeredPrompt_NLJug {
     }
 }
 
-@StructuredPrompt({
-        """
-                Create a {{language}} article about {{subject}}. Include all of the following keywords: {{keywords}}
-                The article is a max of 100 words.
-                Make sure the article exists out of the following parts:
-                - Title
-                - Introduction
-                - Main body
-                - Conclusion
-                """
-})
-class CreateArticlePrompt {
-    String language;
-    String subject;
-    List<String> keywords;
+    @StructuredPrompt({
+            """
+            Create a {{language}} article about {{subject}}. Include all of the following keywords: {{keywords}}
+            The article is a max of 100 words.
+            Make sure the article exists out of the following parts:
+            - Title
+            - Introduction
+            - Main body
+            - Conclusion
+            """
+    })
+    class CreateArticlePrompt {
+        String language;
+        String subject;
+        List<String> keywords;
 
-    public CreateArticlePrompt(String language, String subject, List<String> keywords) {
-        this.language = language;
-        this.subject = subject;
-        this.keywords = keywords;
+        public CreateArticlePrompt(String language, String subject, List<String> keywords) {
+            this.language = language;
+            this.subject = subject;
+            this.keywords = keywords;
+        }
     }
-}
 
 
 
