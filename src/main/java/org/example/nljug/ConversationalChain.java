@@ -1,15 +1,15 @@
-package org.example;
+package org.example.nljug;
 
-import dev.langchain4j.chain.ConversationalChain;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import org.example.ApiKeys;
 
-public class _08_ConversationalChain_NLJug {
+public class ConversationalChain {
 
     public static void main(String[] args) {
 
         OpenAiChatModel model = OpenAiChatModel.withApiKey(ApiKeys.OPENAI_DEMO);
 
-        ConversationalChain chain = ConversationalChain.builder()
+        dev.langchain4j.chain.ConversationalChain chain = dev.langchain4j.chain.ConversationalChain.builder()
                 .chatLanguageModel(model)
                 .build();
 
