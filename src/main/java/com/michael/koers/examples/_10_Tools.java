@@ -1,4 +1,4 @@
-package org.example;
+package com.michael.koers.examples;
 
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;

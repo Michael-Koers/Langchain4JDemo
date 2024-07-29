@@ -1,11 +1,10 @@
-package org.example;
+package com.michael.koers.examples;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.MemoryId;
 import dev.langchain4j.service.UserMessage;
-import dev.langchain4j.store.memory.chat.ChatMemoryStore;
 
 public class _09_AIServices_05_ChatMemory {
 

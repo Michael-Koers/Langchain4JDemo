@@ -1,10 +1,10 @@
-package org.example.nljug;
+package com.michael.koers.nljug;
 
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
-import org.example.ApiKeys;
+import com.michael.koers.examples.ApiKeys;
 
 import java.util.List;
 

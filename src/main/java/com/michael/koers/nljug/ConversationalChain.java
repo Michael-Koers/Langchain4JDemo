@@ -1,7 +1,7 @@
-package org.example.nljug;
+package com.michael.koers.nljug;
 
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import org.example.ApiKeys;
+import com.michael.koers.examples.ApiKeys;
 
 public class ConversationalChain {
 

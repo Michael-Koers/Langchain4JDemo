@@ -1,9 +1,8 @@
-package org.example;
+package com.michael.koers.examples;
 
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.UserMessage;
-import dev.langchain4j.service.V;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

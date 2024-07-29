@@ -1,4 +1,4 @@
-package org.example;
+package com.michael.koers.examples;
 
 import java.io.IOException;
 import java.nio.file.Files;

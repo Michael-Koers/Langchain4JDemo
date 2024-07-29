@@ -1,10 +1,10 @@
-package org.example.nljug;
+package com.michael.koers.nljug;
 
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.structured.StructuredPrompt;
 import dev.langchain4j.model.input.structured.StructuredPromptProcessor;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import org.example.ApiKeys;
+import com.michael.koers.examples.ApiKeys;
 
 import java.util.List;
 

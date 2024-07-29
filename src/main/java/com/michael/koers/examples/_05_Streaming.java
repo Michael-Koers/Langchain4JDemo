@@ -1,4 +1,4 @@
-package org.example;
+package com.michael.koers.examples;
 
 import dev.langchain4j.model.StreamingResponseHandler;
 import dev.langchain4j.model.chat.StreamingChatLanguageModel;

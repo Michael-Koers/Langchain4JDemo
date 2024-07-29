@@ -1,4 +1,4 @@
-package org.example;
+package com.michael.koers.examples;
 
 import dev.langchain4j.chain.ConversationalRetrievalChain;
 import dev.langchain4j.data.document.Document;

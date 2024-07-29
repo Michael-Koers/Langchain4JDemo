@@ -1,4 +1,4 @@
-package org.example.nljug;
+package com.michael.koers.nljug;
 
 public class Tools {
 }
