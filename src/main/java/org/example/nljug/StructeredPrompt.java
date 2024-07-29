@@ -1,13 +1,14 @@
-package org.example;
+package org.example.nljug;
 
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.structured.StructuredPrompt;
 import dev.langchain4j.model.input.structured.StructuredPromptProcessor;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import org.example.ApiKeys;
 
 import java.util.List;
 
-public class _04_StructeredPrompt_NLJug {
+public class StructeredPrompt {
 
     public static void main(String[] args) {
 
