@@ -1,10 +1,10 @@
-package org.example.nljug;
+package com.michael.koers.nljug;
 
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.structured.StructuredPrompt;
 import dev.langchain4j.model.input.structured.StructuredPromptProcessor;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import org.example.ApiKeys;
+import com.michael.koers.examples.ApiKeys;
 
 import java.util.List;
 
@@ -26,28 +26,28 @@ public class StructeredPrompt {
     }
 }
 
-@StructuredPrompt({
-        """
-                Create a {{language}} article about {{subject}}. Include all of the following keywords: {{keywords}}
-                The article is a max of 100 words.
-                Make sure the article exists out of the following parts:
-                - Title
-                - Introduction
-                - Main body
-                - Conclusion
-                """
-})
-class CreateArticlePrompt {
-    String language;
-    String subject;
-    List<String> keywords;
+    @StructuredPrompt({
+            """
+            Create a {{language}} article about {{subject}}. Include all of the following keywords: {{keywords}}
+            The article is a max of 100 words.
+            Make sure the article exists out of the following parts:
+            - Title
+            - Introduction
+            - Main body
+            - Conclusion
+            """
+    })
+    class CreateArticlePrompt {
+        String language;
+        String subject;
+        List<String> keywords;
 
-    public CreateArticlePrompt(String language, String subject, List<String> keywords) {
-        this.language = language;
-        this.subject = subject;
-        this.keywords = keywords;
+        public CreateArticlePrompt(String language, String subject, List<String> keywords) {
+            this.language = language;
+            this.subject = subject;
+            this.keywords = keywords;
+        }
     }
-}
 
 
 
