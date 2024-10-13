@@ -13,13 +13,15 @@ public class _09_AIServices_04_PokemonTrainer {
 
         // To see what happens underwater, set logger to debug
         OpenAiChatModel model = OpenAiChatModel.builder()
-                .apiKey(ApiKeys.OPENAI_DEMO)
+                .apiKey(ApiKeys.OPENAI_PAID)
                 .logRequests(true)
+                .logResponses(true)
                 .build();
 
         PokemonTrainerGeneratorService trainerGenerator = AiServices.create(PokemonTrainerGeneratorService.class, model);
 
-        Trainer trainer = trainerGenerator.generate("Generate a low level trainer named 'Kelvin' with 2 bug and 2 fire pokemon");
+        Trainer trainer = trainerGenerator.generate("Generate a low level " +
+                "trainer named 'Kelvin' with 2 bug and 2 fire pokemon");
 
         System.out.println(trainer);
     }

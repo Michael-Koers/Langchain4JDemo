@@ -20,6 +20,11 @@ public class AIServices {
     }
 }
 
+
+
+
+
+
 interface AIAssistant {
     String chat(String message);
 

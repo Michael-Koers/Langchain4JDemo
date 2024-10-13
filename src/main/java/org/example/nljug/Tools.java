@@ -1,6 +1,24 @@
 package org.example.nljug;
 
+import dev.langchain4j.agent.tool.Tool;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.service.AiServices;
+
 public class Tools {
+
+
+    public static void main(String[] args) {
+
+        OpenAiChatModel model = OpenAiChatModel.withApiKey("yourApiKey");
+
+        Chatbot chatbot = AiServices.builder(Chatbot.class)
+                .chatLanguageModel(model)
+                .tools(new ChatBotTools())
+                .build();
+
+        String answer = chatbot.chat("How much tax do I have to pay on €50.75?");
+        System.out.println(answer);
+    }
 }
 
 
@@ -12,7 +30,9 @@ class ChatBotTools {
 
     private static final double TAXES = 0.21d;
 
-    public double calculateTaxes(double price) {
-        return price * TAXES;
+    @Tool("Calculates the taxes for given amount")
+    public double calculateTaxes(double amount) {
+        System.out.println("LLM used calculateTaxes!");
+        return amount * TAXES;
     }
 }
